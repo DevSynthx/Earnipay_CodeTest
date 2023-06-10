@@ -1,0 +1,72 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:unsplash/presentation/util/components/alert_dialog/src/base_dialog.dart';
+import 'package:unsplash/presentation/util/components/alert_dialog/src/base_dialog_data.dart';
+
+class BasicDialogAlertData extends BaseDialogData {
+  BasicDialogAlertData({
+    Widget? title,
+    Widget? content,
+    List<Widget> actions = const <Widget>[],
+  }) : super(
+          title: title,
+          content: content,
+          actions: actions,
+        );
+}
+
+class BasicDialogAlert extends BaseDialog<AlertDialog, CupertinoAlertDialog> {
+  const BasicDialogAlert({
+    super.key,
+    this.title,
+    this.content,
+    this.actions,
+    this.android,
+    this.ios,
+  });
+
+  /// Represents appropriate [Widget] to display in title section.
+  final Widget? title;
+
+  /// Represents appropriate [Widget] to display in content section.
+  final Widget? content;
+
+  /// Represents appropriate list of [Widget]'s to display in actions section.
+  final List<Widget>? actions;
+
+  /// Additional configuration on top of [BasicDialogAlertData]'s default configuration.
+  final BaseDialogBuilder<BasicDialogAlertData>? android;
+
+  /// Additional configuration on top of [BasicDialogAlertData]'s default configuration.
+  final BaseDialogBuilder<BasicDialogAlertData>? ios;
+
+  @override
+  AlertDialog buildMaterialWidget(BuildContext context) {
+    BasicDialogAlertData? data;
+
+    if (android != null) {
+      data = android?.call(context);
+    }
+
+    return AlertDialog(
+      title: data?.title ?? title,
+      content: data?.content ?? content,
+      actions: data?.actions ?? actions,
+    );
+  }
+
+  @override
+  CupertinoAlertDialog buildCupertinoWidget(BuildContext context) {
+    BasicDialogAlertData? data;
+
+    if (ios != null) {
+      data = ios?.call(context);
+    }
+
+    return CupertinoAlertDialog(
+      title: data?.title ?? title,
+      content: data?.content ?? content,
+      actions: data?.actions ?? actions ?? [],
+    );
+  }
+}

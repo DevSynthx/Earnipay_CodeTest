@@ -1,0 +1,43 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+Future<T?> showPlatformDialog<T>({
+  required BuildContext context,
+  required WidgetBuilder builder,
+  androidBarrierDismissible = false,
+  useRootNavigator = true,
+}) {
+  if (kIsWeb) {
+    return showDialog<T>(
+      context: context,
+      builder: builder,
+      barrierDismissible: androidBarrierDismissible,
+      useRootNavigator: useRootNavigator,
+    );
+  } else {
+    final platform = Theme.of(context).platform;
+
+    switch (platform) {
+      case TargetPlatform.fuchsia:
+      case TargetPlatform.linux:
+      case TargetPlatform.windows:
+      case TargetPlatform.android:
+        return showDialog<T>(
+          context: context,
+          builder: builder,
+          barrierDismissible: androidBarrierDismissible,
+          useRootNavigator: useRootNavigator,
+        );
+      case TargetPlatform.macOS:
+      case TargetPlatform.iOS:
+        return showCupertinoDialog<T>(
+          context: context,
+          builder: builder,
+          useRootNavigator: useRootNavigator,
+        );
+      default:
+        throw UnsupportedError("Platform is not supported by this plugin.");
+    }
+  }
+}
