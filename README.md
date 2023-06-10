@@ -1,16 +1,9 @@
-# unsplash
+# Earnipay Code Test
 
-A new Flutter project.
+How to run the code using Visual Studio Code or Android Studio: 
+- Open your either of the IDE's mentioned above and open the project.
+- Click on the play in the IDE's toolbar. You can select a target device or emulator to run the app on.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To execute tests:
+- locate the test in the project's test directory and click on either of the folders
+- Right-click on the test file and select "Run" or "Run Test" from the context menu. 
