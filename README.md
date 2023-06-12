@@ -5,7 +5,7 @@
  
 To improve the application performance, SliverChildBuilderDelegate which is a delegate used with SliverList and SliverGrid was used The purpose is it loads images only when they are needed instead of loading all the images at once. As the user scrolls, additional items are built dynamically. This minimizes the initial loading time and optimizes the memory usage
 
-Caching helps reduce the number of network requests needed to fetch data from remote servers. I used Hive to store the response loccally whenever a get request is successful. When the users device is not connected to the internet, cached data is retrieved and displayed until when there is an active connection or a successful get request.
+Caching helps reduce the number of network requests needed to fetch data from remote servers. I used Hive to store data locally whenever a get request is successful. When the users device is not connected to the internet, cached data is retrieved and displayed until when there is an active connection or a successful get request. Images are also cached using CacheNetwork package. This improves the performance, offline support, and memory management of the app when dealing with network images.
 Note: The data is stored for about an 1 hour locally and is cleared. 
 
 
