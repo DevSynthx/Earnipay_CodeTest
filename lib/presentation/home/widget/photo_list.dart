@@ -35,21 +35,35 @@ class PhotosList extends StatelessWidget {
         loading: () => const SliverToBoxAdapter(
             child: Center(child: CircularProgressIndicator())),
         error: (e, stk) => SliverToBoxAdapter(
-          child: Center(
-            child: Column(
-              children: const [
-                Icon(Icons.info),
-                SizedBox(
-                  height: 20,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Icon(Icons.info),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Something went wrong",
+                style: TextStyle(
+                  color: Colors.black,
                 ),
-                Text(
-                  "Something went wrong",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              TextButton(
+                  style: TextButton.styleFrom(backgroundColor: Colors.blue),
+                  onPressed: () {
+                    ref.read(itemsProvider.notifier).init();
+                  },
+                  child: const Text(
+                    "Retry",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ))
+            ],
           ),
         ),
         onGoingLoading: (photos) {

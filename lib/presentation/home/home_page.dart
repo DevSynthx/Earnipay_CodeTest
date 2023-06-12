@@ -22,6 +22,7 @@ class _HomePageViewState extends ConsumerState<HomePageView> {
     double maxScroll = _scrollController!.position.maxScrollExtent;
     double currentScroll = _scrollController!.position.pixels;
     double delta = MediaQuery.of(context).size.width * 0.10;
+    if (maxScroll == 0) return;
     if (maxScroll - currentScroll <= delta) {
       ref.read(itemsProvider.notifier).fetchNextBatch();
     }

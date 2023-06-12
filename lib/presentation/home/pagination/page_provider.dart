@@ -13,12 +13,15 @@ final itemsProvider =
     itemsPerBatch: 20,
     fetchNextItems: (
       item,
-    ) {
+    ) async {
       page++;
       log("Page number $page");
       try {
-        return ref.watch(photoRepositoryProvider).getPhotos(page);
+        return await ref.read(photoRepositoryProvider).getPhotos(page);
       } catch (e) {
+        // if there is an error fetching photos for the first time, set the page
+        // number to one
+        page--;
         throw e.toString();
       }
     },
